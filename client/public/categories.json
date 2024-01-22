@@ -1,43 +1,42 @@
 [
     {
-      "id": 1,
-      "image": "crop_image.jpg",
-      "categories": "Crops"
+        "image": "https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2021/01/optimising_agriculture/22518234-1-eng-GB/Optimising_agriculture_pillars.jpg",
+        "categories": "Crops",
+        "path": "crops"
     },
     {
-      "id": 2,
-      "image": "flower_image.jpg",
-      "categories": "Flowers"
+        "image": "https://cdn.firstcry.com/education/2022/12/12101916/Flower-Names-In-English-For-Kids.jpg",
+        "categories": "Flowers",
+        "path": "flowers"
     },
     {
-      "id": 3,
-      "image": "fruit_image.jpg",
-      "categories": "Fruit"
+        "image": "https://cdn-prod.medicalnewstoday.com/content/images/articles/325/325253/assortment-of-fruits.jpg",
+        "categories": "Fruits",
+        "path": "fruits"
     },
     {
-      "id": 4,
-      "image": "vegetable_image.jpg",
-      "categories": "Vegetables"
+        "image": "https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2018/12/vegetables.jpg",
+        "categories": "Vegetables",
+        "path": "vegetables"
     },
     {
-      "id": 5,
-      "image": "herb_image.jpg",
-      "categories": "Herbs"
+        "image": "https://www.heinens.com/wp-content/uploads/2021/03/The-Benefits-of-Fresh-Herbs_Header_800x550.jpg",
+        "categories": "Herbs",
+        "path": "herbs"
     },
     {
-      "id": 6,
-      "image": "seasonal_image.jpg",
-      "categories": "Seasonal Gardening"
+        "image": "https://dragonflylandscape.ca/ius/blog/1213-249785-8476.jpg",
+        "categories": "Seasonal Gardening",
+        "path": "sgardening"
     },
     {
-      "id": 7,
-      "image": "indoor_plant_image.jpg",
-      "categories": "Indoor Plants"
+        "image": "https://media.architecturaldigest.com/photos/5dcde0245ff5e60008e76f52/master/w_1600,c_limit/Osofsky_Oct19-571.jpg",
+        "categories": "Indoor Plants",
+        "path": "iplants"
     },
     {
-      "id": 8,
-      "image": "evergreen_tree_image.jpg",
-      "categories": "Evergreen Trees"
+        "image": "https://www.thespruce.com/thmb/AkCYcr1DTXpF8CMbxxPR83R2Ip0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/difference-between-evergreens-and-conifers-2131029-01-d96c60f271e845e3af2f70cb410589a6.jpg",
+        "categories": "Evergreen Trees",
+        "path": "etrees"
     }
 ]
-  

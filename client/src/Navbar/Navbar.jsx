@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom"
 import logo from '../../img/t.png'
+import './navbar.css'
 
 const Navbar = () => {
 
@@ -35,7 +36,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    <NavLink className="" to='/login'><button>LogIn</button></NavLink>     
                 </div>
             </div>
         </div>

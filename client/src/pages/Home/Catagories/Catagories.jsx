@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { GrNext } from 'react-icons/gr';
+import { Link } from "react-router-dom";
 
 const Catagories = () => {
 
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        fetch('categories.json')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => {
                 setCategories(data);
@@ -19,16 +21,18 @@ const Catagories = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {
                     categories.map(category => (
-                        <div key={category.id}>
-                            <div className="card bg-base-100 shadow-xl">
-                                <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                                <div className="card-body">
-                                    <h2 className="card-title">
-                                        {category.categories}
-                                    </h2>
-                                    <button></button>
+                        <div key={category._id}>
+                            <Link to={`/category/${category.path}`}>
+                                <div className="bg-base-100 hover:shadow-2xl h-72 border border-gray-300 rounded-2xl">
+                                    <figure className="w-full h-3/4"><img src={category.image} className="w-full h-full rounded-t-2xl" alt={category.categories} /></figure>
+                                    <div className="flex justify-between p-6">
+                                        <h2 className="card-title">
+                                            {category.categories}
+                                        </h2>
+                                        <button><GrNext className="text-2xl text-red-500"></GrNext ></button>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     ))
                 }
