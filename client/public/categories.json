@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "image": "crop_image.jpg",
+      "categories": "Crops"
+    },
+    {
+      "id": 2,
+      "image": "flower_image.jpg",
+      "categories": "Flowers"
+    },
+    {
+      "id": 3,
+      "image": "fruit_image.jpg",
+      "categories": "Fruit"
+    },
+    {
+      "id": 4,
+      "image": "vegetable_image.jpg",
+      "categories": "Vegetables"
+    },
+    {
+      "id": 5,
+      "image": "herb_image.jpg",
+      "categories": "Herbs"
+    },
+    {
+      "id": 6,
+      "image": "seasonal_image.jpg",
+      "categories": "Seasonal Gardening"
+    },
+    {
+      "id": 7,
+      "image": "indoor_plant_image.jpg",
+      "categories": "Indoor Plants"
+    },
+    {
+      "id": 8,
+      "image": "evergreen_tree_image.jpg",
+      "categories": "Evergreen Trees"
+    }
+]
+  
