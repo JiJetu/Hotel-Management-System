@@ -1,14 +1,34 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../provider/context/Authprovider";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LogIn = () => {
+    const [showPassword, setShowPassword] = useState(false)
+    const { logIn } = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const user = {email, password}
-        console.log(user);
+
+        setErrorMessage('')
+
+        logIn(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                alert("login successfully")
+                navigate(location?.state ? location.state : '/')
+            }).catch((err) => {
+                console.error(err);
+                setErrorMessage(err);
+            });
+
     }
 
     return (
@@ -32,10 +52,21 @@ const LogIn = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password"
-                                name="password"
-                                placeholder="password"
-                                className="input input-bordered" required />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="password"
+                                    className="input input-bordered" required />
+                                <span className="absolute top-4 right-2" onClick={() => setShowPassword(!showPassword)}>
+                                    {
+                                        showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
+                                    }
+                                </span>
+                            </div>
+                            {
+                                errorMessage && <p className="text-red-600">wrong password</p>
+                            }
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />

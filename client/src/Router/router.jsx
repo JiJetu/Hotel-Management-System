@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import Category from "../pages/Home/Catagories/Category/Category";
 import LogIn from "../pages/Home/LogIn/LogIn";
 import Register from "../pages/Register/Register";
+import PrivateAuth from "../PrivateAuth/PrivateAuth";
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path:"category/:path",
-        element: <Category></Category>,
+        element: <PrivateAuth><Category></Category></PrivateAuth>,
       },
       {
         path:"login",

@@ -1,6 +1,16 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provider/context/Authprovider";
+import { FaGoogle } from "react-icons/fa";
+import { GoogleAuthProvider } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
+    const { createUser, googleLogIn } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const provider = new GoogleAuthProvider();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -8,8 +18,32 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const user = {name, email, password}
-        console.log(user);
+
+        setErrorMessage('');
+
+        if(!/[A-Z]/.test(password)){
+            return setErrorMessage("Password should have at least one upper cse characters");
+        }
+
+        createUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                alert("register successfully")
+            }).catch((err) => {
+                console.error(err);
+                setErrorMessage(err.message)
+            });
+    }
+
+    const handleLoginWithGoogle = () => {
+        googleLogIn(provider)
+            .then((result) => {
+                const user = result.user
+                console.log(user);
+            }).catch((err) => {
+                console.error(err.message);
+            });
     }
 
     return (
@@ -42,15 +76,24 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password"
-                                name="password"
-                                placeholder="password"
-                                className="input input-bordered" required />
+                            <div className="relative">
+                                <input type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="password"
+                                    className="input input-bordered w-full" required />
+                                <span onClick={() => setShowPassword(!showPassword)} className="absolute top-4 right-3">{showPassword ?
+                                    <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
+                                }</span>
+                                {
+                                    errorMessage && <p className="text-red-700">{errorMessage}</p>
+                                }
+                            </div>
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Register" />
                         </div>
                     </form>
+                    <button onClick={handleLoginWithGoogle} className="text-center flex items-center bg-red-700 text-white p-2"><span className=""><FaGoogle className="bg-white p-2 text-red-700 text-3xl rounded-full"></FaGoogle></span><span className="font-semibold ml-12">signIn with Google</span></button>
                     <div className="text-center pb-5">
                         have an account?? please <Link to='/login' className="text-blue-600">login</Link>
                     </div>

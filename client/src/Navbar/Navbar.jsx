@@ -1,13 +1,25 @@
 import { Link, NavLink } from "react-router-dom"
 import logo from '../../img/t.png'
 import './navbar.css'
+import { useContext } from "react";
+import { AuthContext } from "../provider/context/Authprovider";
 
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext);
 
     const navbar = <>
         <li> <NavLink to="/">Home</NavLink> </li>
         <li> <NavLink to="/bookings">My Bookings</NavLink> </li>
     </>
+
+    const handleLogOut = () => {
+        logOut()
+        .then((result) => {
+            alert("logOut successfully")
+        }).catch((err) => {
+            console.error(err);
+        });
+    }
 
     return (
         <div className='container mx-auto'>
@@ -36,7 +48,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <NavLink className="" to='/login'><button>LogIn</button></NavLink>     
+                {
+                    user ? <button className="btn btn-ghost" onClick={handleLogOut}>LogOut</button> : 
+                    <NavLink className="" to='/login'><button>LogIn</button></NavLink> 
+                }  
                 </div>
             </div>
         </div>
