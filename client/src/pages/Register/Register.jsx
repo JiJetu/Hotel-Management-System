@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/context/Authprovider";
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -8,7 +8,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Register = () => {
     const { createUser, googleLogIn } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const location = useLocation();
+    const navigate = useNavigate()
 
     const provider = new GoogleAuthProvider();
 
@@ -30,6 +33,7 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 alert("register successfully")
+                navigate(location?.state ? location.state : '/');
             }).catch((err) => {
                 console.error(err);
                 setErrorMessage(err.message)
@@ -41,6 +45,7 @@ const Register = () => {
             .then((result) => {
                 const user = result.user
                 console.log(user);
+                navigate(location?.state ? location.state : "/")
             }).catch((err) => {
                 console.error(err.message);
             });
@@ -93,8 +98,8 @@ const Register = () => {
                             <input className="btn btn-primary" type="submit" value="Register" />
                         </div>
                     </form>
-                    <button onClick={handleLoginWithGoogle} className="text-center flex items-center bg-red-700 text-white p-2"><span className=""><FaGoogle className="bg-white p-2 text-red-700 text-3xl rounded-full"></FaGoogle></span><span className="font-semibold ml-12">signIn with Google</span></button>
-                    <div className="text-center pb-5">
+                    <button onClick={handleLoginWithGoogle} className="text-center flex items-center bg-red-700 text-white p-2"><span className=""><FaGoogle className="bg-white p-2 text-red-700 text-3xl rounded-full"></FaGoogle></span><span className="font-medium ml-12">SignIn with Google</span></button>
+                    <div className="text-center mt-3 pb-5">
                         have an account?? please <Link to='/login' className="text-blue-600">login</Link>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import PrivateAuth from "../PrivateAuth/PrivateAuth";
 import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Text from "../Text/Text";
+import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
 
 
 const router = createBrowserRouter([
@@ -20,8 +21,9 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path:"category/:path",
+        path:"/category/:path",
         element: <PrivateAuth><Category></Category></PrivateAuth>,
+        loader: ({params}) => fetch(`http://localhost:5000/categories/${params.path}`)
       },
       {
         path:"login",
@@ -47,7 +49,8 @@ const router = createBrowserRouter([
       },
       {
         path:'/dashboard/manageProduct',
-        element: <Text>Manage Product</Text>,
+        element: <ManageProduct></ManageProduct>,
+        loader: () => fetch('http://localhost:5000/addProducts')
       },
     ]
   },

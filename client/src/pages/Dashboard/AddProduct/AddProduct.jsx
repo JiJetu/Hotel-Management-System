@@ -6,7 +6,7 @@ const AddProduct = () => {
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
-        const pname= form.pname.value;
+        const pname = form.pname.value;
         const sproduct = form.sproduct.value;
         const pimage = form.pimage.value;
         const price = form.price.value;
@@ -20,6 +20,22 @@ const AddProduct = () => {
             productDescription: pdesc
         }
         console.log(product);
+
+        fetch('http://localhost:5000/addProducts', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId > 0) {
+                    console.log(data);
+                    alert("Product added successfully")
+                }
+                form.reset();
+            })
     }
 
     return (
