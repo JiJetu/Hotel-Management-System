@@ -9,6 +9,7 @@ import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Text from "../Text/Text";
 import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
+import Product from "../pages/Home/Catagories/Category/Product/Product";
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path:"/category/:path",
         element: <PrivateAuth><Category></Category></PrivateAuth>,
         loader: ({params}) => fetch(`http://localhost:5000/categories/${params.path}`)
+      },
+      {
+        path:"/category/product/:id",
+        element: <Product></Product>,
       },
       {
         path:"login",
