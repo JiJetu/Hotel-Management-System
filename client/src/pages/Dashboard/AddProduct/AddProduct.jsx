@@ -3,7 +3,7 @@ import Text from "../../../Text/Text";
 
 const AddProduct = () => {
 
-    const handleSubmit = e => {
+    const handleAddProduct = e => {
         e.preventDefault();
         const form = e.target;
         const pname = form.pname.value;
@@ -36,6 +36,7 @@ const AddProduct = () => {
                     console.log(data);
                     alert("Product added successfully")
                 }
+                alert("Product added successfully...")
                 form.reset();
             })
     }
@@ -43,7 +44,7 @@ const AddProduct = () => {
     return (
         <div>
             <Text>Add Product</Text>
-            <form onSubmit={handleSubmit} className="card-body">
+            <form onSubmit={handleAddProduct} className="card-body">
                 <div className="flex gap-2">
                     <div className="form-control flex-1">
                         <label className="label">
@@ -58,7 +59,7 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text">Category</span>
                         </label>
-                        <select className="select select-bordered w-full" name="sproduct" defaultValue='Crops' required>
+                        <select className="select select-bordered w-full" name="sproduct" defaultValue='Select Your Category' required>
                             <option disabled>Select Your Category</option>
                             <option>Crops</option>
                             <option>Flowers</option>

@@ -10,6 +10,8 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Text from "../Text/Text";
 import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
 import Product from "../pages/Home/Catagories/Category/Product/Product";
+import CheckOut from "../pages/Home/Catagories/Category/Product/CheckOut/CheckOut";
+import Bookings from "../pages/Bookings/Bookings";
 
 
 const router = createBrowserRouter([
@@ -23,12 +25,17 @@ const router = createBrowserRouter([
       },
       {
         path:"/category/:path",
-        element: <PrivateAuth><Category></Category></PrivateAuth>,
+        element: <Category></Category>,
         loader: ({params}) => fetch(`http://localhost:5000/categories/${params.path}`)
       },
       {
         path:"/category/product/:id",
-        element: <Product></Product>,
+        element: <PrivateAuth><Product></Product></PrivateAuth>,
+        loader: ({params}) => fetch(`http://localhost:5000/category/product/${params.id}`)
+      },
+      {
+        path:"/checkout/:id",
+        element: <PrivateAuth><CheckOut></CheckOut></PrivateAuth>,
         loader: ({params}) => fetch(`http://localhost:5000/category/product/${params.id}`)
       },
       {
@@ -60,6 +67,10 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path:'/bookings',
+    element: <Bookings></Bookings>
+  }
 ]);
 
 export default router;
