@@ -11,13 +11,15 @@ const AddProduct = () => {
         const pimage = form.pimage.value;
         const price = form.price.value;
         const pdesc = form.pdesc.value;
+        const pfeat = form.pfeat.value;
 
         const product = {
             productName: pname,
             selectedProduct: sproduct,
             image: pimage,
             price,
-            productDescription: pdesc
+            productDescription: pdesc,
+            productFeatures: pfeat
         }
         console.log(product);
 
@@ -90,11 +92,19 @@ const AddProduct = () => {
                             className="input input-bordered" required />
                     </div>
                 </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Product Description</span>
-                    </label>
-                    <textarea name="pdesc" className="textarea textarea-bordered" placeholder="Insert some Info......." required></textarea>
+                <div className="flex gap-3">
+                    <div className="form-control flex-1">
+                        <label className="label">
+                            <span className="label-text">Product Description</span>
+                        </label>
+                        <textarea name="pdesc" className="textarea textarea-bordered" placeholder="Insert some Info......." required></textarea>
+                    </div>
+                    <div className="form-control flex-1">
+                        <label className="label">
+                            <span className="label-text">Product Features</span>
+                        </label>
+                        <textarea name="pfeat" className="textarea textarea-bordered" placeholder="Insert some Info......." required></textarea>
+                    </div>
                 </div>
                 <div className="form-control mt-6">
                     <input className="btn btn-primary" type="submit" value="Add Product" />
