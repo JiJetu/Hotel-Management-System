@@ -5,6 +5,9 @@ import Category from "../pages/Home/Catagories/Category/Category";
 import LogIn from "../pages/Home/LogIn/LogIn";
 import Register from "../pages/Register/Register";
 import PrivateAuth from "../PrivateAuth/PrivateAuth";
+import AddProduct from "../pages/Dashboard/AddProduct/AddProduct";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Text from "../Text/Text";
 
 
 const router = createBrowserRouter([
@@ -27,6 +30,24 @@ const router = createBrowserRouter([
       {
         path:"register",
         element: <Register></Register>
+      },
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children:[
+      {
+        path:'/dashboard',
+        element: <Text>Dashboard</Text>,
+      },
+      {
+        path:'/dashboard/addProduct',
+        element: <AddProduct></AddProduct>,
+      },
+      {
+        path:'/dashboard/manageProduct',
+        element: <Text>Manage Product</Text>,
       },
     ]
   },
