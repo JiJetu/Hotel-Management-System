@@ -38,7 +38,7 @@ const CheckOut = () => {
             console.log(data);
             if(data.insertedId){
                 alert('added successfully')
-                navigate(location?.state ? location.state : "/")
+                return navigate(location?.state ? location.state : "/")
             }
         })
     }
