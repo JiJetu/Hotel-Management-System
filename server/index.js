@@ -9,7 +9,9 @@ const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: [
+    'http://localhost:5173'
+  ],
   credentials: true
 }));
 app.use(express.json())
@@ -28,6 +30,29 @@ const client = new MongoClient(uri, {
   }
 });
 
+// middleware
+// get the url
+const logger = async(req, res, next) =>{
+  console.log("url:", req.host, req.originalUrl);
+
+   next()
+}
+
+const verifiedToken = async(req, res, next) => {
+  const token = req.cookies?.token;
+  if(!token){
+    return res.status(401).send({massage: "not authorized"});
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
+    if(err){
+      return res.status(401).send({massage: "unauthorized"})
+    }
+    req.user = decoded;
+    next()
+  })
+}
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -39,21 +64,23 @@ async function run() {
     const bookings = treeHouseDB.collection("bookings")
 
     // auth related api
-    app.post('/jwt', async(req, res) => {
+    app.post('/jwt', logger, async (req, res) => {
       const user = req.body;
-      const token = jwt.sign(user, process.env.ACCESS_TOKEN, {expiresIn: '1h'})
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
+        expiresIn: '1h'
+      })
 
       res
-      .cookie('token', token, {
-        httpOnly: true,
-        secure: false
-      })
-      .send({success: true})
+        .cookie("token", token, {
+          httpOnly: true,
+          secure: false
+        })
+        .send({ massage: true })
     })
 
 
     // services related api
-    app.get('/categories', async (req, res) => {
+    app.get('/categories', logger, async (req, res) => {
       const categoriesList = req.body
       const result = await categories.find(categoriesList).toArray()
       res.send(result)
@@ -70,7 +97,7 @@ async function run() {
 
 
     // Added Product
-    app.get('/addProducts', async (req, res) => {
+    app.get('/addProducts', logger, async (req, res) => {
       // const products = req.body;
       const result = await addProduct.find().toArray();
       res.send(result)
@@ -118,7 +145,6 @@ async function run() {
     })
 
 
-
     // find product
     app.get('/category/product/:id', async (req, res) => {
       const id = req.params.id;
@@ -130,8 +156,13 @@ async function run() {
       res.send(product)
     })
 
+
     // bookings
-    app.get('/bookings', async (req, res) => {
+    app.get('/bookings', logger, verifiedToken, async (req, res) => {
+      // console.log(req.query.email);
+      if(req.query.email !== req.user.email){
+        return res.status(403).send({massage: "forbidden access"})
+      }
       let query = {};
       if (req.query?.email) {
         query = { email: req.query.email }
@@ -145,7 +176,7 @@ async function run() {
       const bookingsItem = req.body;
       // const {date} = bookingsItem.date;
       const isExists = await bookings.findOne(bookingsItem);
-      if(isExists){
+      if (isExists) {
         return res.json("already exists")
       }
       const result = await bookings.insertOne(bookingsItem);
