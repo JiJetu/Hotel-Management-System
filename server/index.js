@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
-const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser')
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -32,26 +32,27 @@ const client = new MongoClient(uri, {
 
 // middleware
 // get the url
-const logger = async(req, res, next) =>{
-  console.log("url:", req.host, req.originalUrl);
+const logger = (req, res, next) =>{
+  console.log("url:", req.method, req.originalUrl, req.host);
 
    next()
 }
 
-const verifiedToken = async(req, res, next) => {
+const verifyToken = (req, res, next) => {
   const token = req.cookies?.token;
+  // console.log(token);
   if(!token){
-    return res.status(401).send({massage: "not authorized"});
+    return res.status(401).send({massage: 'not authorize'})
   }
-
   jwt.verify(token, process.env.ACCESS_TOKEN, (err, decoded) => {
     if(err){
-      return res.status(401).send({massage: "unauthorized"})
+      return res.status(401).send({massage: "unauthorize"})
     }
     req.user = decoded;
     next()
   })
 }
+
 
 async function run() {
   try {
@@ -64,18 +65,27 @@ async function run() {
     const bookings = treeHouseDB.collection("bookings")
 
     // auth related api
-    app.post('/jwt', logger, async (req, res) => {
+    app.post('/jwt', async (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN, {
         expiresIn: '1h'
       })
+      
+      res
+      .cookie('token', token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
+      })
+      .send({massage: true})
+    })
+
+    app.post('/logout', async(req, res) => {
+      const user = req.body;
 
       res
-        .cookie("token", token, {
-          httpOnly: true,
-          secure: false
-        })
-        .send({ massage: true })
+      .clearCookie("token", {maxAge: 0})
+      .send({massage: true})
     })
 
 
@@ -158,10 +168,10 @@ async function run() {
 
 
     // bookings
-    app.get('/bookings', logger, verifiedToken, async (req, res) => {
+    app.get('/bookings', logger, verifyToken, async (req, res) => {
       // console.log(req.query.email);
-      if(req.query.email !== req.user.email){
-        return res.status(403).send({massage: "forbidden access"})
+      if (req.query.email !== req.user.email) {
+        return res.status(403).send({ massage: "forbidden access" })
       }
       let query = {};
       if (req.query?.email) {
