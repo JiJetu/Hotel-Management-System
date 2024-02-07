@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 
-const ManageProductCards = ({ product, handleDeleteProduct }) => {
-    const { _id, productName, selectedProduct, image, price, productDescription } = product;
+const ManageProductCards = ({ product, handleDeleteProduct,     handleUpdateProduct }) => {
     
+    const { _id, productName, selectedProduct, image, price, productDescription } = product;
+
+
     return (
         <div className="grid grid-cols-12 mb-4 border border-lime-300">
             <figure className="col-span-3"><img className="h-full" src={image} alt={productName} /></figure>
@@ -15,7 +18,9 @@ const ManageProductCards = ({ product, handleDeleteProduct }) => {
             <div className="col-span-2 flex gap-3 ml-2">
                 <div className="text-2xl text-lime-400 font-semibold flex justify-center items-center">$ {price}</div>
                 <div className="col-span-1 flex flex-col items-center justify-center space-y-3">
-                    <button className="btn border border-green-500">Update</button>
+                    <Link to={`/dashboard/updateProduct/${_id}`}>
+                        <button onClick={() => handleUpdateProduct(_id)} className="btn border border-green-500">Update</button>
+                    </Link>
                     <button onClick={() => handleDeleteProduct(_id)} className="btn btn-md btn-circle btn-outline">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>

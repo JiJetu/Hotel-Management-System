@@ -12,6 +12,7 @@ import ManageProduct from "../pages/Dashboard/ManageProduct/ManageProduct";
 import Product from "../pages/Home/Catagories/Category/Product/Product";
 import CheckOut from "../pages/Home/Catagories/Category/Product/CheckOut/CheckOut";
 import Bookings from "../pages/Bookings/Bookings";
+import UpdateProduct from "../pages/Dashboard/UpdateProduct/UpdateProduct";
 
 
 const router = createBrowserRouter([
@@ -65,11 +66,16 @@ const router = createBrowserRouter([
         element: <ManageProduct></ManageProduct>,
         loader: () => fetch('http://localhost:5000/addProducts')
       },
+      {
+        path:'/dashboard/updateProduct/:id',
+        element: <UpdateProduct></UpdateProduct>,
+        loader: ({params}) => fetch(`http://localhost:5000/addProducts/${params.id}`)
+      },
     ]
   },
   {
     path:'/bookings',
-    element: <Bookings></Bookings>
+    element: <PrivateAuth><Bookings></Bookings></PrivateAuth>
   }
 ]);
 

@@ -7,7 +7,6 @@ const CheckOut = () => {
     const { _id, productName, image, price } = product;
 
     const {user} = useContext(AuthContext);
-    const location = useLocation();
     const navigate = useNavigate()
 
     const handleCheckout = e => {
@@ -38,7 +37,10 @@ const CheckOut = () => {
             console.log(data);
             if(data.insertedId){
                 alert('added successfully')
-                return navigate(location?.state ? location.state : "/")
+                navigate('/')
+            }
+            else{
+                alert("already exists")
             }
         })
     }

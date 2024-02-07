@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../provider/context/Authprovider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import UseAuth from "../../../hook/UseAuth";
 
 const LogIn = () => {
+    // const { logIn } = useContext(AuthContext);
+    const {logIn} = UseAuth()
     const [showPassword, setShowPassword] = useState(false)
-    const { logIn } = useContext(AuthContext);
     const [errorMessage, setErrorMessage] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
@@ -20,10 +21,22 @@ const LogIn = () => {
 
         logIn(email, password)
             .then((result) => {
-                const user = result.user;
-                console.log(user);
-                alert("login successfully")
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+
+                alert("login successfully");
                 navigate(location?.state ? location.state : '/')
+
+                // const user = { email };
+
+                // get access token
+                // axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
+                //     .then(res => {
+                //         console.log(res.data);
+                //         // alert("login successfully");
+                //         // navigate(location?.state ? location.state : '/')
+                //     })
+
             }).catch((err) => {
                 console.error(err);
                 setErrorMessage(err);
