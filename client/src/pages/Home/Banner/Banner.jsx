@@ -15,9 +15,15 @@ const Banner = () => {
                         <button className="text-lg text-white py-3 px-7 border-2 border-white">ROOM SUITES</button>
                     </div>
                 </div>
-                <div className="absolute flex gap-6 transform -translate-y-1/2 right-8 bottom-0">
-                    <a href="#slide2" className="btn btn-circle">❮</a>
-                    <a href="#slide2" className="btn btn-circle">❯</a>
+                <div className="absolute flex flex-col gap-6 transform -translate-y-1/2 right-[12%] bottom-[22%]">
+                    <div className="flex flex-col items-center">
+                        <a href="#slide2" className="btn btn-circle bg-transparent text-white"><span>❮</span></a>
+                        <p className="text-white">Prev</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <a href="#slide2" className="btn btn-circle bg-transparent text-white">❯</a>
+                        <p className="text-white">Next</p>
+                    </div>
                 </div>
             </div>
             <div id="slide2" className="carousel-item relative w-full h-[90vh]">
@@ -28,15 +34,21 @@ const Banner = () => {
                 <div className="absolute h-full w-full flex justify-center items-center">
                     <div className="text-center">
                         <h1 className="text-6xl text-white font-bold font-serif">Elite
-                        <br /> 
-                        Havens & Retreats</h1>
+                            <br />
+                            Havens & Retreats</h1>
                         <p className="text-lg font-medium text-lime-100 mt-4 mb-10">Where every stay is Unique</p>
                         <button className="text-lg text-white py-3 px-7 border-2 border-white">ROOM SUITES</button>
                     </div>
                 </div>
-                <div className="absolute flex gap-6 transform -translate-y-1/2 right-8 bottom-0">
-                    <a href="#slide1" className="btn btn-circle">❮</a>
-                    <a href="#slide1" className="btn btn-circle">❯</a>
+                <div className="absolute flex flex-col gap-6 transform -translate-y-1/2 right-[12%] bottom-[22%]">
+                    <div className="flex flex-col items-center">
+                        <a href="#slide1" className="btn btn-circle bg-transparent text-white"><span>❮</span></a>
+                        <p className="text-white">Prev</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <a href="#slide1" className="btn btn-circle bg-transparent text-white">❯</a>
+                        <p className="text-white">Next</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@ const Availability = () => {
                         onChange={(date) => setEndDate(date)} />
                 </div>
                 <div>
-                    <button className='border border-red-800 py-10 px-10 text-white bg-slate-900 text-xl'>Check
+                    <button className='py-10 px-10 text-white bg-slate-900 text-xl'>Check
                         <br />
                         Availability</button>
                 </div>
