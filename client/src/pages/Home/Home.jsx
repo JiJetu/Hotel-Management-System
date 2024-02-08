@@ -1,10 +1,22 @@
+import Navbar from "../../Navbar/Navbar";
+import Availability from "./Availability/Availability";
 import Banner from "./Banner/Banner";
 import Catagories from "./Catagories/Catagories";
 
 const Home = () => {
     return (
         <div>
-            <Banner></Banner>
+            <div className="sticky top-0 z-50 transition ease-in-out">
+                <div className="absolute w-full">
+                    <Navbar></Navbar>
+                </div>
+            </div>
+            <div className="relative">
+                <Banner></Banner>
+            </div>
+            <div className="absolute w-full bottom-0 z-50">
+                <Availability></Availability>
+            </div>
             <Catagories></Catagories>
         </div>
     );
