@@ -12,7 +12,8 @@ const Banner = () => {
                             <br />
                             Resort & Suits</h1>
                         <p className="text-lg font-medium text-lime-100 mt-2 mb-10">Where every stay is Unique</p>
-                        <button className="text-lg text-white py-3 px-7 border-2 border-white">ROOM SUITES</button>
+                        <a href="#room&suits" ><button className="text-lg text-white py-3 px-7 border-2 border-white">ROOM SUITES</button></a>
+                        
                     </div>
                 </div>
                 <div className="absolute flex flex-col gap-6 transform -translate-y-1/2 right-[12%] bottom-[22%]">

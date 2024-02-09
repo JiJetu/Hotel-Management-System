@@ -10,7 +10,11 @@
             "https://i.ibb.co/KzSHRZ0/deborah-cortelazzi-g-REqu-CUXQLI-unsplash.jpg",
             "image3.jpg"
         ],
-        "specialOffers": "10% off for a 7-day stay"
+        "specialOffers": {
+            "offer": 10,
+            "tag": "10% off for a 7-day stay",
+            "require" : 7
+        }
     },
     {
         "name": "Ocean View Room",
@@ -23,11 +27,15 @@
             "image17.jpg",
             "image18.jpg"
         ],
-        "specialOffers": "10% off for a 3-day stay"
+        "specialOffers": {
+            "offer": 10,
+            "tag": "10% off for a 7-day stay",
+            "require" : 7
+        }
     },
     {
         "name": "Family Suite",
-        "description": "Ideal for family getaways with multiple rooms.",
+        "description": "Ideal for family getaways with multiple Catagories.",
         "pricePerNight": 350,
         "size": "700 sq. ft.",
         "availability": 2,
@@ -36,7 +44,11 @@
             "image14.jpg",
             "image15.jpg"
         ],
-        "specialOffers": "20% off for a 7-day stay"
+        "specialOffers": {
+            "offer": 20,
+            "tag": "20% off for a 7-day stay",
+            "require" : 7
+        }
     },
     {
         "name": "Executive Suite",
@@ -49,7 +61,11 @@
             "image8.jpg",
             "image9.jpg"
         ],
-        "specialOffers": "15% off for a 7-day stay"
+        "specialOffers": {
+            "offer": 15,
+            "tag": "15% off for a 7-day stay",
+            "require" : 7
+        }
     },
     {
         "name": "Mountain View Room",
@@ -75,7 +91,11 @@
             "image20.jpg",
             "image21.jpg"
         ],
-        "specialOffers": "15% off for a 7-day stay"
+        "specialOffers": {
+            "offer": 5,
+            "tag": "5% off for a 4-day stay",
+            "require" : 5
+        }
     },
     {
         "name": "Standard Room",
@@ -101,6 +121,10 @@
             "image5.jpg",
             "image6.jpg"
         ],
-        "specialOffers": "5% off for a 5-day stay"
+        "specialOffers": {
+            "offer": 5,
+            "tag": "5% off for a 5-day stay",
+            "require" : 5
+        }
     }
 ]

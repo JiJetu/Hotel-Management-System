@@ -9,7 +9,7 @@ const Availability = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(minDay);
 
-    console.log(today);
+    // console.log(today);
     return (
         <div className='max-w-[1000px] mx-auto'>
             <form className='flex justify-center items-center w-full gap-5 text-center bg-white shadow-lg'>

@@ -1,33 +1,22 @@
 import { Link, NavLink } from "react-router-dom"
-import logo from '../../img/t.png'
+import logo from '../../img/Capture.png'
 import './navbar.css'
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../provider/context/Authprovider";
 
-const Navbar = () => {
+const Navbar = ({color}) => {
     const { user, logOut } = useContext(AuthContext);
-
-    // navbar color changing
-    const [color, setColor] = useState(false)
-    const colorChanging = () => {
-        if (window.scrollY >= 7) {
-            setColor(true)
-        }
-        else {
-            setColor(false)
-        }
-    }
-    window.addEventListener('scroll', colorChanging)
+    
 
     const navbar = <>
-        <li> <NavLink className='mx-2 hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/">Home</NavLink> </li>
+        <li> <NavLink className='mx-2 text-[#cfcece] hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/">Home</NavLink> </li>
         {
-            user && <li> <NavLink className='mx-2 hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/bookings">My Bookings</NavLink> </li>
+            user && <li> <NavLink className='mx-2 text-[#cfcece] hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/bookings">My Bookings</NavLink> </li>
         }
         {
-            user?.email === 'jije2@gmail.com' && < li > <NavLink className='mx-2 hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/dashboard">Dashboard</NavLink> </li>
+            user?.email === 'jije2@gmail.com' && < li > <NavLink className='mx-2 text-[#cfcece] hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/dashboard">Dashboard</NavLink> </li>
         }
-        <li> <NavLink className='mx-2 hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/bookings">My Bookings</NavLink> </li>
+        <li> <NavLink className='mx-2 text-[#cfcece] hover:border-2 hover:border-[#ffd700] px-[10px] py-[6px] rounded-lg' to="/bookings">My Bookings</NavLink> </li>
     </>
 
     const handleLogOut = () => {
@@ -40,7 +29,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className={color ? "bg-base-100 rounded-b-full py-3" : "bg-transparent py-2 text-white"}>
+        <div className={color ? "bg-base-100 rounded-b-full py-3" : "bg-transparent py-2 text-[#cfcece]"}>
             <div className='container mx-auto'>
                 <div className="navbar">
                     <div className="navbar-start">
@@ -55,9 +44,9 @@ const Navbar = () => {
                         <Link to='/'>
                             <button className="flex gap-3 items-center">
                                 <div className="h-11 w-11">
-                                    <img src={logo} alt=" " className="h-full w-full rounded-full" />
+                                    <img src={logo} alt=" " className="h-full w-full rounded-e-3xl rounded-es-3xl" />
                                 </div>
-                                <p className="font-bold text-2xl">Tree House</p>
+                                <p className="font-bold text-2xl">OasisLuxe</p>
                             </button>
                         </Link>
                     </div>
