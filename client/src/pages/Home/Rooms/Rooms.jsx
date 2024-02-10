@@ -3,7 +3,7 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 
 const Rooms = () => {
     return (
-        <div id="room&suits" className="container mx-auto">
+        <div id="room&suits" className="container mx-auto mb-10">
             <div className="text-center my-12 space-y-4">
                 <p>LUXURY HOTEL</p>
                 <h3 className="text-4xl font-serif font-medium">Rooms & Suits</h3>
